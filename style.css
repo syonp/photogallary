@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+header {
+  position: fixed;
+  /*← fixedで固定 */
+  margin-bottom: 40px;
+}
+
+.scroll {
+  position: fixed;
+  bottom: 2em;
+  width: 3em;
+  height: 3em;
+
+  span {
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    top: 25%;
+    left: 33%;
+    transform: translateY(0) rotate(-45deg);
+    border-left: 1px solid #F5F5F5;
+    border-bottom: 1px solid #F5F5F5;
+    z-index: 2;
+    animation: popping-arrow 2s infinite ease-out;
+  }
+
+  &:hover span {
+    transform: translateY(.5em) rotate(-45deg);
+    animation: paused;
+  }
+}
+
+@keyframes popping-arrow {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  30% {
+    transform: translateY(.5em) rotate(-45deg);
+  }
+
+  60% {
+    transform: translateY(0) rotate(-45deg);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.image-container {
+  position: fixed;
+  /* 画像を固定して背景のように扱う */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  /* コンテンツの背面に配置 */
+}
+
+.animated-image {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  /* 初期位置（画面の左外側） */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* アスペクト比を保ちながら画面全体をカバー */
+  opacity: 1;
+  /* 初期状態は完全に不透明 */
+  transition: left 0.8s ease-in-out, opacity 1.0s ease-out;
+  /* スライドと透過を滑らかに */
+}
+
+.content {
+  position: relative;
+  padding: 50px;
+  color: #333;
+}
+
+/*文字*/
+p {
+  color: #EEE;
+  font-size: 50px;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.fade {
+  opacity: 0;
+}
+
+/*ギャラリー*/
+#gallery {
+  display: grid;
+  max-width: 950px;
+  margin: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.img-item {
+  opacity: 0;
+  filter: blur(10px);
+  width: 100%;
+}
+
+.img-item img {
+  width: 100%;
+  height: auto;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  width: 800px;
+  height: 500px;
+  border: 5px solid lightgray;
+}
+
+/*スライド画像*/
+/* スライダーを画面の中央に配置 */
+.bxslider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* スライダー全体 */
+.bxslider {
+  display: block;
+  position: relative;/* 必要に応じて */
+  width: 100%;/* 親要素にフィット */
+  overflow: hidden;
+}
+
+/* スライダー内の画像 */
+.bxslider img {
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  text-align: center;
+  color: #EEE;
+}
